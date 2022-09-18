@@ -1,0 +1,20 @@
+
+<div class="categories">
+    <div class="title">
+        <h1>Gutenberg Project</h1>
+        <p>
+            A social cataloging website that allows you to freely search its database of books, annotations, and reviews.
+        </p>
+    </div>
+</div>
+<div class="buttons">
+    <button *ngFor="let button of buttons"
+        (click)="getBooks(button)"
+        [disabled]="button.disabled"
+        class="button"
+        >
+        <i [style.background-image]="'url(./../assets/icons/' + button.iconName + ')'" class="icon-before"></i>
+        {{ button.buttonText }}
+        <i class="icon-after"></i>
+    </button>
+</div>
