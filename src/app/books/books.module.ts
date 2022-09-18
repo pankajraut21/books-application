@@ -6,13 +6,15 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { BooksService } from './services/books.service';
 import { SearchBookComponent } from './components/seach-book/seach-book.component';
 import { BooksComponent } from './books.component';
+import { ScrollTrackerDirective } from './directives/scroll-tracker.directive';
 
 
 @NgModule({
 	declarations: [
 		BooksComponent,
 		CategoriesComponent,
-		SearchBookComponent
+		SearchBookComponent,
+		ScrollTrackerDirective
 	],
 	imports: [
 		CommonModule,

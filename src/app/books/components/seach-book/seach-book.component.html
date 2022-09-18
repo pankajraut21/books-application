@@ -1,16 +1,22 @@
 
 <div class="search">
-    <div class="title">
-        <h2>
-            <i class="icon-after" (click)="goBack()"></i> {{selectedCategory}}
-        </h2>
-        <div class="search-input">
-            <form class="nosubmit">
-                <input class="nosubmit" type="search" placeholder="Search...">
-            </form>
-        </div>            
-    </div>
+	<div class="title">
+		<h2>
+			<i class="icon-after" (click)="goBack()"></i> {{selectedCategory}}
+		</h2>
+		<div class="search-input">
+			<form class="nosubmit">
+				<input class="nosubmit" type="search" placeholder="Search...">
+			</form>
+		</div>            
+	</div>
 </div>
-<div class="buttons">
-
+<div class="cards">
+	<div style="float: left;" *ngFor="let book of this.books" scrollTracker (scrollingFinished)="onScrollingFinished()">
+		<img class="card" src="{{book.formats['image/jpeg']}}" alt="Avatar">
+		<div class="container">
+			<h4 class="title"><b>{{ book.title | uppercase }}</b></h4>
+			<p class="author">{{ book.authors[0].name }}</p>
+		</div>
+	</div>
 </div>

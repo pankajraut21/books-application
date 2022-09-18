@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Button} from '../../classes/button';
 import { BooksService } from '../../services/books.service';
-import { IAllBooks, IBook } from '../../models/books';
+import { IAllBooks, IBook, IPageInfo } from '../../models/books';
 import { Router, ActivatedRoute } from '@angular/router'; 
 
 @Component({
@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-	public title = 'books';
+	public page: IPageInfo | undefined;
 	public books: IBook[] | undefined;
 	public buttons: Button[] = [];
 
@@ -21,6 +21,11 @@ export class CategoriesComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.page = {
+			title: "Gutenberg Project",
+			description: "A social cataloging website that allows you to freely search its database of books, annotations, and reviews."
+		}
+
 		this.initializeButtons();
 		this.booksService.getBooks().subscribe(
 			(response: IAllBooks) => {
@@ -77,21 +82,9 @@ export class CategoriesComponent implements OnInit {
 	}
 
 	public getBooks(button: Button) {
-		console.log(button.buttonText);
-		console.log(this.books);
-		let categoryBooks = this.books?.filter((book: any) => {
-			let searchedCategories = book?.bookshelves?.filter((category: any) => category.includes(button.buttonText));
-			let searchedSubjects = book?.subjects?.filter((subject: any) => subject.includes(button.buttonText));
-			if (searchedCategories.length > 0 || searchedSubjects.length > 0) {
-				return book;
-			}
-		});
-		console.log(categoryBooks);
 		const data = {
-			category: button.buttonText,
-			data: categoryBooks
+			category: button.buttonText
 		}
-		// this.router.navigate(['items'], { relativeTo: this.route });
 		this.router.navigate(['books/seachBook'], { state: data });
 	}
 }

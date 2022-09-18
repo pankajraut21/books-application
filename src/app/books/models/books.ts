@@ -5,14 +5,28 @@ export interface IAllBooks {
     results: IBook[]
 }
 
+export interface IAuthor {
+    birth_year: number;
+    death_year: number;
+    name: string;
+}
+
 export interface IBook {
-    authors: [];
+    authors: IAuthor[];
     bookshelves: [];
     download_count: string;
-    formats: {};
+    formats: {
+        'image/jpeg'?: string
+    };
     id: number;
     languages: [];
-    media_type: string;
+    media_type: {};
     subjects: [];
-    title: string
+    title: string;
+    imageUrl?: string
+}
+
+export interface IPageInfo {
+    title: string;
+    description: string;
 }
