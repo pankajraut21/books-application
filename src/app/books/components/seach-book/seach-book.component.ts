@@ -6,9 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-seach-book',
-  templateUrl: './seach-book.component.html',
-  styleUrls: ['./seach-book.component.scss']
+	selector: 'app-seach-book',
+	templateUrl: './seach-book.component.html',
+	styleUrls: ['./seach-book.component.scss']
 })
 export class SearchBookComponent implements OnInit {
 	
@@ -25,7 +25,7 @@ export class SearchBookComponent implements OnInit {
 		private location: Location,
 		private route: ActivatedRoute,
 		private router: Router) {
-			this.stateData = router.getCurrentNavigation();
+		this.stateData = router.getCurrentNavigation();
 	}
 
 	ngOnInit() {
@@ -55,7 +55,7 @@ export class SearchBookComponent implements OnInit {
 	}
 
 	public onScrollingFinished(): void {
-		this.booksService.getBooks(++this.page).subscribe(
+		this.booksService.getBooks(this.page += 1).subscribe(
 			(response: IAllBooks) => {
 				let data = response.results;
 				for (let i = 0; i < data.length; i++) {
@@ -70,7 +70,7 @@ export class SearchBookComponent implements OnInit {
 				});
 
 				let booksWithCovers = categoryBooks?.filter(book => book.formats.hasOwnProperty('image/jpeg'));
-				this.books = booksWithCovers;	
-			});			
+				this.books = booksWithCovers;
+			});
 	}
 }

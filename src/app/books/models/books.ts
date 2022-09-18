@@ -1,9 +1,3 @@
-export interface IAllBooks {
-    count: string;
-    next: string;
-    previous: string;
-    results: IBook[]
-}
 
 export interface IAuthor {
     birth_year: number;
@@ -25,6 +19,15 @@ export interface IBook {
     title: string;
     imageUrl?: string
 }
+
+export interface IAllBooks {
+    count: string;
+    next: string;
+    previous: string;
+    results: IBook[]
+}
+
+
 
 export interface IPageInfo {
     title: string;
